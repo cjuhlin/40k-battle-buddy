@@ -6,8 +6,19 @@ var VERSION = 'version_01';         // Version of the off-line cache (change thi
 
 var CACHE_NAME = APP_PREFIX + VERSION;
 
-var URLS = [                            // Add URL you want to cache in this list.
+var assets = [                            // Add URL you want to cache in this list.
     GPATH + '/',                     // If you have separate JS/CSS files,
     GPATH + '/index.html',            // add path to those files here
-    GPATH + '/manifest.json'
-];
+    GPATH + '/manifest.json',
+    GPATH + '/icons/icon-192x192.png',
+    GPATH + '/icons/icon-512x512.png',
+
+]
+
+self.addEventListener("install", installEvent => {
+    installEvent.waitUntil(
+      caches.open(staticDevCoffee).then(cache => {
+        cache.addAll(assets)
+      })
+    )
+  })
