@@ -17,7 +17,7 @@ var assets = [                            // Add URL you want to cache in this l
 
 self.addEventListener("install", installEvent => {
     installEvent.waitUntil(
-      caches.open(staticDevCoffee).then(cache => {
+      caches.open(CACHE_NAME).then(cache => {
         cache.addAll(assets)
       })
     )
